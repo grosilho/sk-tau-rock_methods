@@ -8,7 +8,7 @@
 #include "R-tau-ROCK.h"
 #include "SplitStepImplicitTau.h"
 #include "ProblemsList.h"
-#include <GetPot/GetPot>
+#include <GetPot>
 
 Parameters::Parameters(int argc, char** argv, int prob_num_, string solver_name_, string filename_,
             const unsigned int MCiter_, Real tau_max_, int nout_,
