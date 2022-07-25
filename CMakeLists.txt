@@ -1,5 +1,16 @@
 cmake_minimum_required(VERSION 3.10)
 
+add_compile_options(-Ofast) 
+if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+  # using Clang
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+  add_compile_options(-fopenmp) 
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Intel")
+  # using Intel C++
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+  # using Visual Studio C++
+endif()
+
 set(CMAKE_CXX_STANDARD 14)
 file(MAKE_DIRECTORY build)
 file(MAKE_DIRECTORY install)
