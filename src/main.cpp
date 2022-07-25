@@ -1,3 +1,20 @@
+/*
+    Copyright (C) 2022 Giacomo Rosilho de Souza
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
 #include "headers.h"
 #include "MonteCarlo.h"
 #include "ProblemsList.h"
@@ -5,14 +22,20 @@
 
 int main(int argc, char** argv) 
 {
+    cout<<"SK-tau-ROCK methods.  Copyright (C) 2022 Giacomo Rosilho de Souza\n"
+           "This program comes with ABSOLUTELY NO WARRANTY; for details type run it with the --help option.\n"
+           "This is free software, and you are welcome to redistribute it under certain conditions.\n"
+           "You should have received a copy of the GNU General Public License along with this program.\n"
+           "If not, see <https://www.gnu.org/licenses/>.\n"<<endl;
+    
     Parameters param;
     
     // default values
     param.filename = "sol"; //output file name
     param.solver_name = "str"; //name of integration method
-    param.prob_num = 2; //problem/example to solve
-    param.MCiter = 1e0; //number of Monte Carlo iterations
-    param.tau_max = 0.01; //tau/dt. Can be reduced during integration due to stability restrictions, for instance in standard tau-leap method
+    param.prob_num = 4; //problem/example to solve
+    param.MCiter = 1e4; //number of Monte Carlo iterations
+    param.tau_max = 0.05; //tau/dt. Can be reduced during integration due to stability restrictions, for instance in standard tau-leap method
     param.nout = 1e4;   //number of output points. Used only when one path is computed, not for Monte Carlo simulations
     param.post_process = true; //postprocess the solution or not
     param.n_bins =30; //number of bins used in the approximation of density function
