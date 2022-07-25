@@ -11,7 +11,7 @@ int main(int argc, char** argv)
     param.filename = "sol"; //output file name
     param.solver_name = "str"; //name of integration method
     param.prob_num = 2; //problem/example to solve
-    param.MCiter = 1e2; //number of Monte Carlo iterations
+    param.MCiter = 1e0; //number of Monte Carlo iterations
     param.tau_max = 0.01; //tau/dt. Can be reduced during integration due to stability restrictions, for instance in standard tau-leap method
     param.nout = 1e4;   //number of output points. Used only when one path is computed, not for Monte Carlo simulations
     param.post_process = true; //postprocess the solution or not
@@ -22,7 +22,9 @@ int main(int argc, char** argv)
     param.s = 0; //when s>0 then the number of stages is fixed to that value. It is not choses according to current stiffness
     param.damping = 0.05; //the damping parameter for sk-tau-rock. In tau-rock and rev-tau-rock the damping is chosen according to a formula depending on s. If param.s>0 the damping parameter is still chosen accordin to the same formula depending on s. But is param.damping>0 then it is fixed to param.damping, no formula is used.
     
-    param.read_command_line(argc, argv);
+    if(param.read_command_line(argc, argv))
+        return 0;
+    
     param.init();
     
     if(param.get_solver()==string("none")) // we dont simulate anything but just compare two already existing sets of data
@@ -47,5 +49,7 @@ int main(int argc, char** argv)
         delete sol;
         delete cs;
     }
+    
+    return 0;
 }
 

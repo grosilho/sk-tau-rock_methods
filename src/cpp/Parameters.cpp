@@ -39,9 +39,15 @@ void Parameters::init()
     }
 }
 
-void Parameters::read_command_line(int argc, char** argv)
+bool Parameters::read_command_line(int argc, char** argv)
 {
     GetPot cl(argc, argv);
+    
+    if(cl.search("--help"))
+    {
+        disp_help();
+        return true;
+    }
    
     prob_num = cl.follow(prob_num, "-prob");
     MCiter = cl.follow(MCiter, 2, "-mc", "-mciter");
@@ -84,6 +90,7 @@ void Parameters::read_command_line(int argc, char** argv)
         {
             solver_name = "error";
             cout<<"ERROR: solver not implemented"<<endl;
+            return true;
         }
     }
     
@@ -92,6 +99,26 @@ void Parameters::read_command_line(int argc, char** argv)
        solver_name =="tau-ROCK" || solver_name =="R-tau-ROCK")
         post_process = false;
     
+    return false;
+}
+
+void Parameters::disp_help()
+{
+    ifstream ifile("help.txt",ios::in);
+    
+    if(!ifile.good())
+    {
+        cout<<"ERROR: cannot find help.txt file."<<endl;
+        ifile.close();
+        return;
+    }
+    
+    stringstream buffer;
+    buffer<<ifile.rdbuf();
+    
+    cout<<buffer.str()<<endl;
+    
+    ifile.close();
 }
 
 void Parameters::init_ChemicalSystem(ChemicalSystem*& cs)
@@ -118,7 +145,7 @@ void Parameters::init_Solver_ChemicalSystem(Solver*& sol, ChemicalSystem*& cs)
 {
     init_ChemicalSystem(cs);
     
-    if(solver_name=="SSA")
+    if(solver_name=="SSA" || solver_name=="ssa")
         sol = new SSA(*this,cs);
     else if(solver_name=="tau-leap" || solver_name=="tl" || solver_name=="etl" || solver_name=="exp-tau-leap")
         sol = new TauLeap(*this,cs);

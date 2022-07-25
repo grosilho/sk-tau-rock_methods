@@ -19,6 +19,8 @@ public:
 //Here we see that PSK-tau-ROCK gives excellent results independently of tau
 //Trapezoidal is less accurate, slower and depends on tau. Implicit tau is awful.
 //SK-tau-ROCK does not get the right variance unless we take more stages
+// Similar to example 3 in 
+// ﻿Abdulle, A., Hu, Y., & Li, T. (2010). Chebyshev Methods with Discrete Noise: the $\tau$-ROCK Methods. Journal of Computational Mathematics, 28(2), 195–217.
 class NonlinearReversibleReaction: public ChemicalSystem
 {
 public:

@@ -43,6 +43,7 @@ target_link_libraries(${PROJECT_NAME}
     TauLeapMethod TrapezoidalTauLeap
 )
 
+
 install(TARGETS ${PROJECT_NAME} DESTINATION .)
 
 # folders to store results
@@ -53,3 +54,6 @@ install(DIRECTORY DESTINATION MichaelisMenten)
 install(DIRECTORY DESTINATION NonlinearReversibleReaction)
 install(DIRECTORY DESTINATION ReversibleIsomerization)
 install(DIRECTORY DESTINATION SchloglReaction)
+
+configure_file(${CMAKE_SOURCE_DIR}/src/help.txt ${CMAKE_SOURCE_DIR}/install COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/src/matlab/Plot_path.m ${CMAKE_SOURCE_DIR}/install COPYONLY)

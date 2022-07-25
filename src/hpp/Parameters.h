@@ -27,8 +27,10 @@ public:
     Real get_final_time();
     Real get_Newton_tol();
     
-    void read_command_line(int argc, char** argv);
+    bool read_command_line(int argc, char** argv);
     void init();
+    
+    void disp_help();
     
     unsigned int prob_num;
     unsigned int N_species;
