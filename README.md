@@ -53,10 +53,11 @@ To run the code the following options are available:
 - `-damping`: changes the damping parameter, for `tr` and `rtr` this option is considered only when `-s` is given as well. By default, for `str` damping is 0.05, for `tr` and `rtr` it is chosen according to a formula depending on $s$.
 
 ### Examples 
-- to run the GeneticPositiveFeedbackLoop problem, using 1e4 Monte Carlo iterations with the Stochastic Simulation Algorithm and name the output file _ssa_sol_, run:
+- to run the Genetic Positive Feedback Loop problem, using 1e4 Monte Carlo iterations with the Stochastic Simulation Algorithm and name the output file _ssa_sol_, run:
 ```
  ./tau-leaping_methods -prob 3 -mc 1e4 -solver ssa -ofile ssa_sol
  ```
+ Simulation results are found in the `install/GeneticPositiveFeedbackLoop` folder.
 - to run the same problem, with tau=0.05, 1e4 Monte Carlo iterations, using SK-$\tau$-ROCK with postprocessing and using 4 additional stages, naming the output file _sk-tau-rock_sol_ and finally compare the result with the previous simulation, run:
 ```
 ./tau-leaping_methods -prob 3 -tau 0.05 -mc 1e4 -solver str -pp 1 -s_add 4 -ofile sk-tau-rock_sol -refsol ssa_sol
@@ -66,6 +67,9 @@ To run the code the following options are available:
 ./tau-leaping_methods -prob 4 -tau 0.001 -nout 1e3 -mc 1 -solver str -pp 0 -ofile MM_str
 ```
 The solution can be displayed with the `Plot_path.m` script.
+
+## License
+See `LICENSE.txt` for licensing information.
 
 ## References
 - <sub>[1] D. T. Gillespie. Exact stochastic simulation of coupled chemical reactions. Journal of Physical Chemistry, 81(25), 1977.</sub>
