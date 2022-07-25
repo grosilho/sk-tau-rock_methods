@@ -1,8 +1,8 @@
 clc;
 clear;
 
-problem_num = 2;
-filename = 'sol';
+problem_num = 4;
+filename = 'MM_str';
 
 path = './';
 problem_names = {'ReversibleIsomerization', 'NonlinearReversibleReaction', 'GeneticPositiveFeedbackLoop', 'MichaelisMenten', 'SchloglReaction','DecayingDimerizing','Ecoli'};
