@@ -78,3 +78,6 @@ The solution can be displayed with the `Plot_path.m` script.
 - <sub>[8] Y. Yang, M. Rathinam, and J. Shen. Integral tau methods for stiff stochastic chemical systems. Journal of Chemical Physics, 134(4), 2011.</sub>
 - <sub>[9] M. Rathinam, L. R. Petzold, Y. Cao, and D. T. Gillespie. Consistency and Stability of Tau-Leaping Schemes. Multiscale Model. Simul., 4(3), 2005.</sub>
 - <sub>[10] Hu, Y., Abdulle, A., & Li, T.. Boosted hybrid method for solving chemical reaction systems with multiple scales in time and population size. Communications in Computational Physics, 12(4), 2012.</sub>
+
+## License
+See `LICENSE.txt` for licensing information.
