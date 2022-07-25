@@ -68,13 +68,13 @@ To run the code the following options are available:
 The solution can be displayed with the `Plot_path.m` script.
 
 ## References
-- [1] D. T. Gillespie. Exact stochastic simulation of coupled chemical reactions. Journal of Physical Chemistry, 81(25), 1977.
-- [2] D. T. Gillespie. Approximate accelerated stochastic simulation of chemically reacting systems. Journal of Chemical Physics, 115(4), 2001.
-- [3] Abdulle, A., Gander, L., & Rosilho de Souza, G. Optimal explicit stabilized postprocessed tau-leap method for the simulation of chemical kinetics. arXiv: math.NA/2106.09339, 2021.
-- [4] A. Abdulle, Y. Hu, and T. Li. Chebyshev Methods with Discrete Noise: the τ-ROCK Methods. Journal of Computational Mathematics, 28(2), 2010.
-- [5] M. Rathinam, L. R. Petzold, Y. Cao, and D. T. Gillespie. Stiffness in stochastic chemically reacting systems: The implicit tau-leaping method. Journal of Chemical Physics, 119(24), 2003.
-- [6] Y. Cao, L. R. Petzold, M. Rathinam, and D. T. Gillespie. The numerical stability of leaping methods for stochastic simulation of chemically reacting systems. Journal of Chemical Physics, 121(24), 2004.
-- [7] C. B. Hammouda, A. Moraes, and R. Tempone. Multilevel hybrid split-step implicit tau-leap. Numerical Algorithms, 74(2), 2017.
-- [8] Y. Yang, M. Rathinam, and J. Shen. Integral tau methods for stiff stochastic chemical systems. Journal of Chemical Physics, 134(4), 2011.
-- [9] M. Rathinam, L. R. Petzold, Y. Cao, and D. T. Gillespie. Consistency and Stability of Tau-Leaping Schemes. Multiscale Model. Simul., 4(3), 2005.
-- [10] Hu, Y., Abdulle, A., & Li, T.. Boosted hybrid method for solving chemical reaction systems with multiple scales in time and population size. Communications in Computational Physics, 12(4), 2012.
+- <sub>[1] D. T. Gillespie. Exact stochastic simulation of coupled chemical reactions. Journal of Physical Chemistry, 81(25), 1977.</sub>
+- <sub>[2] D. T. Gillespie. Approximate accelerated stochastic simulation of chemically reacting systems. Journal of Chemical Physics, 115(4), 2001.</sub>
+- <sub>[3] Abdulle, A., Gander, L., & Rosilho de Souza, G. Optimal explicit stabilized postprocessed tau-leap method for the simulation of chemical kinetics. arXiv: math.NA/2106.09339, 2021.</sub>
+- <sub>[4] A. Abdulle, Y. Hu, and T. Li. Chebyshev Methods with Discrete Noise: the τ-ROCK Methods. Journal of Computational Mathematics, 28(2), 2010.</sub>
+- <sub>[5] M. Rathinam, L. R. Petzold, Y. Cao, and D. T. Gillespie. Stiffness in stochastic chemically reacting systems: The implicit tau-leaping method. Journal of Chemical Physics, 119(24), 2003.</sub>
+- <sub>[6] Y. Cao, L. R. Petzold, M. Rathinam, and D. T. Gillespie. The numerical stability of leaping methods for stochastic simulation of chemically reacting systems. Journal of Chemical Physics, 121(24), 2004.</sub>
+- <sub>[7] C. B. Hammouda, A. Moraes, and R. Tempone. Multilevel hybrid split-step implicit tau-leap. Numerical Algorithms, 74(2), 2017.</sub>
+- <sub>[8] Y. Yang, M. Rathinam, and J. Shen. Integral tau methods for stiff stochastic chemical systems. Journal of Chemical Physics, 134(4), 2011.</sub>
+- <sub>[9] M. Rathinam, L. R. Petzold, Y. Cao, and D. T. Gillespie. Consistency and Stability of Tau-Leaping Schemes. Multiscale Model. Simul., 4(3), 2005.</sub>
+- <sub>[10] Hu, Y., Abdulle, A., & Li, T.. Boosted hybrid method for solving chemical reaction systems with multiple scales in time and population size. Communications in Computational Physics, 12(4), 2012.</sub>
