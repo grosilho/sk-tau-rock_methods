@@ -24,12 +24,15 @@ The following problems are already implemented in the code and can be solved by 
  7) E. Coli [10].
  
  ## Installation
- The code can be compiled with the following commands
+ _Prerequisites_: CMake and a C++ compiler.  
+ 
+ The code can be compiled with the following commands:
  ```
  chmod u+x configure.sh build.sh clear.sh
  ./configure.sh
  ./build.sh
  ```
+ Upon configuration, the script will automatically download the required external libraries: `Eigen` and `GetPot`.
  The executable is found in the ``install/`` directory.
  
  ## Running the code
