@@ -33,7 +33,8 @@ The following problems are already implemented in the code and can be solved by 
  ./build.sh
  ```
  Upon configuration, the script will automatically download the required external libraries: `Eigen` and `GetPot`.
- The executable is found in the ``install/`` directory.
+ 
+ The compiled executable is found in the ``install/`` directory.
  
  ## Running the code
  
