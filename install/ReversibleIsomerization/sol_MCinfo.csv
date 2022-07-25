@@ -1,2 +1,0 @@
-time, MCiter, succeed_MCiter, solver, tau_mean, s_mean, damping_mean, rho_Nit_mean, postproc, newton_tol
-0.161023, 1000, 1000, str, 0.0499999999999993, 2, 0.0499999999999993, 1.009569999999993, 1, 0.01
