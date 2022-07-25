@@ -15,12 +15,12 @@ The following methods are available:
 
 ## Problems already implemented
 The following problems are already implemented in the code and can be solved by any of the above methods (see src/ProblemsList.cpp for the details):
- 1) ReversibleIsomerization, a simple linear scalar model problem [6],
- 2) NonlinearReversibleReaction [4],
- 3) GeneticPositiveFeedbackLoop [8],
- 4) MichaelisMenten,
- 5) SchloglReaction [9],
- 6) DecayingDimerizing [2],
+ 1) Reversible Isomerization, a simple linear scalar model problem [6],
+ 2) Nonlinear Reversible Reaction [4],
+ 3) Genetic Positive Feedback Loop [8],
+ 4) Michaelis-Menten,
+ 5) Schlogl Reaction [9],
+ 6) Decaying Dimerizing [2],
  7) E. Coli [10].
  
  ## Installation
