@@ -10,17 +10,16 @@
 #include "ProblemsList.h"
 #include <GetPot>
 
-Parameters::Parameters(int argc, char** argv, int prob_num_, string solver_name_, string filename_,
-            const unsigned int MCiter_, Real tau_max_, int nout_,
-            bool post_proc_, unsigned int n_bins_, string refsol_,
-            Real Newton_tol_)
-:prob_num(prob_num_), solver_name(solver_name_), filename(filename_),
- MCiter(MCiter_),tau_max(tau_max_), nout(nout_), 
- post_proc(post_proc_), n_bins(n_bins_), refsol(refsol_),
- Newton_tol(Newton_tol_)
+Parameters::Parameters()
 {
-    read_command_line(argc, argv);
-    
+}
+
+Parameters::~Parameters()
+{
+}
+
+void Parameters::init()
+{
     ChemicalSystem* cs;
     init_ChemicalSystem(cs);
     N_species = cs->get_num_species();
@@ -38,19 +37,6 @@ Parameters::Parameters(int argc, char** argv, int prob_num_, string solver_name_
         MCiter =0;
         tau_max=0.;
     }
-  
-//    cout<<"prob_num: "<<prob_num<<endl;
-//    cout<<"N_species: "<<N_species<<endl;
-//    cout<<"MCiter: "<<MCiter<<endl;
-//    cout<<"tau_max: "<<tau_max<<endl;
-//    cout<<"nout: "<<nout<<endl;
-//    cout<<"solver_name: "<<solver_name<<endl;
-//    cout<<"problem_name: "<<problem_name<<endl;
-//    cout<<"filename: "<<filename<<endl;
-}
-
-Parameters::~Parameters()
-{
 }
 
 void Parameters::read_command_line(int argc, char** argv)
@@ -62,10 +48,13 @@ void Parameters::read_command_line(int argc, char** argv)
     tau_max = cl.follow(tau_max, 2, "-tau", "-dt");
     nout = cl.follow(nout, "-nout");
     filename  = cl.follow(filename.c_str(), "-ofile");
-    post_proc = cl.follow((int)post_proc, 3, "-post_proc", "-pp", "-p");
+    post_process = cl.follow((int)post_process, 3, "-post_proc", "-pp", "-p");
     n_bins = cl.follow(n_bins, 2, "-nbins", "-bins");
     refsol = cl.follow(refsol.c_str(), 2, "-refsol", "-ref");
     Newton_tol = cl.follow(Newton_tol, 2, "-Ntol", "-ntol");
+    s_add = cl.follow(s_add, "-s_add");
+    s = cl.follow(s, "-s");
+    damping = cl.follow(damping, 4, "-damping", "-damp", "-eps", "-eta");
     
     if(cl.search(2,"-sol", "-solver"))
     {
@@ -73,7 +62,7 @@ void Parameters::read_command_line(int argc, char** argv)
         if(sol=="tau-leap" || sol=="etl" || sol=="exp-tau-leap" || sol=="tl")
         {
             solver_name = "tau-leap";
-            post_proc = false;
+            post_process = false;
         }
         else if(sol=="imp-tau-leap" || sol=="itl")
             solver_name = "imp-tau-leap";
@@ -101,7 +90,7 @@ void Parameters::read_command_line(int argc, char** argv)
     // for these methods there is no postprocessing implemented
     if(solver_name== "trap-tau-leap" || solver_name =="SSA" || 
        solver_name =="tau-ROCK" || solver_name =="R-tau-ROCK")
-        post_proc = false;
+        post_process = false;
     
 }
 
@@ -171,7 +160,7 @@ unsigned int Parameters::get_nout()
 
 bool Parameters::get_post_proc()
 {
-    return post_proc;
+    return post_process;
 }
 
 unsigned int Parameters::get_n_bins()

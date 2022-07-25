@@ -48,29 +48,35 @@ bool RtauROCK::ensure_stability()
     
     s_old = s;
     
-    // tentative damping parameters
-    damping = 0.05;
-    beta = 2.-4.*damping/3.;
-    s = ceil(sqrt(tau*eigmax/beta));
-    
-    s--;
-    do
+    if(param.s>0) //fix s to a user defined value
     {
-        s++;
+        s = param.s;
+        if(param.damping>=0.)//fix damping to user defined value
+            damping=param.damping;
+        else//use formula for damping depending on s
+            damping = 3.3*(log(s)-log(2.))+0.35;
+        
+    }
+    else//use formulas
+    {
+        // tentative damping parameters
+        damping = 0.05;
+        beta = 2.-4.*damping/3.;
+        s = ceil(sqrt(tau*eigmax/beta));
+
+        s--;
+        do
+        {
+            s++;
+            beta = pow(8.*tau*eigmax/alpha,1./2./s);
+            damping = (1.-beta)*(1.-beta)*s*s/2./beta;
+            ell = ChebyshevMethods::StabBoundaryRKC1(s,damping);
+        }while(tau*eigmax>ell);
+
+        s += param.s_add;;
         beta = pow(8.*tau*eigmax/alpha,1./2./s);
         damping = (1.-beta)*(1.-beta)*s*s/2./beta;
-        w0 = 1+damping/s/s;
-        w1 = ChebyshevMethods::T(w0,s)/ChebyshevMethods::dT(w0,s);
-        ell = (1.+w0)/w1;
-    }while(tau*eigmax>ell);
-    
-    s+=safe_add;
-    beta = pow(8.*tau*eigmax/alpha,1./2./s);
-    damping = (1.-beta)*(1.-beta)*s*s/2./beta;
-    
-    
-//    damping = 3500;
-//    s = 800;
+    }
     
     damping_mean += damping;
     

@@ -41,55 +41,13 @@ void ChebyshevMethods::CoefficientsRKC1(vector<Real>& mu, vector<Real>& nu,
     }
 }
 
-void ChebyshevMethods::CoefficientsModRKC1(vector<Real>& nu, vector<Real>& kappa, 
-                       vector<Real>& mu, Real& theta, vector<Real>& c,
-                       unsigned int s, Real eps)
+Real ChebyshevMethods::StabBoundaryRKC1(unsigned int s, Real eps)
 {
-    if(s%2!=0)
-    {
-        cout<<"ERROR: CoefficientsModRKC1 is used with an even s."<<endl;
-        return;
-    }
-    
-    unsigned int r=s/2;
-    
-    nu.resize(r);
-    kappa.resize(r);
-    mu.resize(r);
-    c.resize(r);
     
     Real w0 = 1.+eps/s/s;
     Real w1 = T(w0,s)/dT(w0,s);
-    theta = (1./(2.*w1))*(T(w0,r)/dT(w0,r));
-    
-    Real bjm2,bjm1,bj;
-    
-    bjm1 = 1./w0; // = 1/T(w0,1)
-    mu[0] = w1/w0;
-    nu[0] = s*w1/2.;
-    kappa[0] = s*w1/w0;
-    c[0] = mu[0];
-    
-    for(unsigned int j=2;j<=r;j++)
-    {
-        bj = 1./T(w0,j);
-        mu[j-1] = 2*w1*bj/bjm1;
-        nu[j-1] = 2*w0*bj/bjm1;
-        
-        if(j>2)
-        {
-            kappa[j-1] = -bj/bjm2;
-            c[j-1] = mu[j-1]+nu[j-1]*c[j-2]+kappa[j-1]*c[j-3];
-        }
-        else
-        {
-            kappa[j-1]=-bj;
-            c[j-1] = mu[j-1]+nu[j-1]*c[j-2];
-        }
-        
-        bjm2 = bjm1;
-        bjm1 = bj;
-    }
+   
+    return 2.*w0/w1;
 }
 
 

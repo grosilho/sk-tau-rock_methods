@@ -4,8 +4,8 @@
 SKtauROCK::SKtauROCK(Parameters param_, ChemicalSystem* cs_)
 :StabilizedTauLeapMethod(param_, cs_)
 {
-    damping = 0.05;
-    beta = 2.-4.*damping/3.;
+    damping = param.damping;
+    beta = 2.-4.*damping/3.; //used only for small dampings
 }
 
 SKtauROCK::~SKtauROCK()
@@ -45,18 +45,30 @@ void SKtauROCK::step()
 }
 
 bool SKtauROCK::ensure_stability()
-{
-    unsigned int safe_add = 1;
-    
+{    
     if(!rho())
         return false;
     
     s_old = s;
-    s = ceil(sqrt(tau*eigmax/beta))+ safe_add;
     
+    if(param.s>0)// fix s to a user defined value
+    {
+        s=param.s;
+        return true;
+    }
+    else// chose s according to formula  
+    {
+        if(damping<=0.1)
+            s = ceil(sqrt(tau*eigmax/beta))+ param.s_add;
+        else//for large dampings the above formula is unvalid
+        {
+            s = ceil(sqrt(tau*eigmax/2.));
+            while(ChebyshevMethods::StabBoundaryRKC1(s,damping)<tau*eigmax)
+                s++;
+            s += param.s_add;
+        }
+    }
     damping_mean += damping;
-    
-//    s=5;
     
     return true;
 }

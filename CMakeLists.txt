@@ -1,13 +1,14 @@
 cmake_minimum_required(VERSION 3.10)
 
 set(CMAKE_CXX_STANDARD 14)
-
+file(MAKE_DIRECTORY build)
+file(MAKE_DIRECTORY install)
 
 #project name
 project(TauLeapMethods)
 
 #executables
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp)
 
 #download submodules
 find_package(Git QUIET)
@@ -42,3 +43,13 @@ target_link_libraries(${PROJECT_NAME}
     TauLeapMethod TrapezoidalTauLeap
 )
 
+install(TARGETS ${PROJECT_NAME} DESTINATION .)
+
+# folders to store results
+install(DIRECTORY DESTINATION DecayingDimerizing)
+install(DIRECTORY DESTINATION Ecoli)
+install(DIRECTORY DESTINATION GeneticPositiveFeedbackLoop)
+install(DIRECTORY DESTINATION MichaelisMenten)
+install(DIRECTORY DESTINATION NonlinearReversibleReaction)
+install(DIRECTORY DESTINATION ReversibleIsomerization)
+install(DIRECTORY DESTINATION SchloglReaction)

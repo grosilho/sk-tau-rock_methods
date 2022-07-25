@@ -39,43 +39,33 @@ void tauROCK::step()
 }
 
 bool tauROCK::ensure_stability()
-{
-    unsigned int safe_add = 0;
-    
+{    
     if(!rho())
         return false;
     
     s_old = s;
     
-    // S-ROCK choice for s
-    s=1;
-    damping = 0.05;
-    Real w0,w1;
-    bool unstable=true;
-    do
+    if(param.s>0) //fix s to a user defined value
     {
-        w0 = 1.+damping/s/s;
-        w1 = ChebyshevMethods::T(w0,s)/ChebyshevMethods::dT(w0,s);
+        s = param.s;
+        if(param.damping>=0.)//fix damping to user defined value
+            damping=param.damping;
+        else//use formula for damping depending on s
+            damping = 3.3*(log(s)-log(2.))+0.35;
         
-        if(2.*w0/w1>tau*eigmax)
-            unstable=false;
-        else
-        {
+    }
+    else// automatically chose s and damping
+    {
+        // S-ROCK choice for s
+        s=1;
+        damping = 0.05;
+        while(ChebyshevMethods::StabBoundaryRKC1(s,damping)<tau*eigmax)
+        {        
             s++;
             damping = 3.3*(log(s)-log(2.))+0.35;
         }
-        
-    }while(unstable);
-    
-    
-    // standard choice for s
-    //    damping = 0.05;
-//    beta = 2.-4.*damping/3.;
-    // s = ceil(sqrt(tau*eigmax/beta))+ safe_add;
-
-    // Manual choice
-//    damping = 3500;
-//    s =800;
+        s += param.s_add;
+    }
     
     damping_mean += damping;
     

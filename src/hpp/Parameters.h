@@ -9,9 +9,7 @@ class ChemicalSystem;
 class Parameters
 {
 public:
-    Parameters(int argc, char** argv, int prob_num_, string solver_name_, string filename_, 
-               const unsigned int MCiter_, Real tau_max_, int nout_,
-               bool post_proc_, unsigned int n_bins_, string refsol_, Real Newton_tol_);
+    Parameters();
     ~Parameters();
     
     void init_ChemicalSystem(ChemicalSystem*& cs);
@@ -29,8 +27,8 @@ public:
     Real get_final_time();
     Real get_Newton_tol();
     
-protected:
     void read_command_line(int argc, char** argv);
+    void init();
     
     unsigned int prob_num;
     unsigned int N_species;
@@ -41,10 +39,13 @@ protected:
     string solver_name;
     string problem_name;
     string filename;
-    bool post_proc;
+    bool post_process;
     unsigned int n_bins;
     Real Newton_tol;
     string refsol;
+    unsigned int s_add;
+    unsigned int s;
+    Real damping;
 };
 
 #endif /* INITIALIZER_H */
