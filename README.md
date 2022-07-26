@@ -24,7 +24,7 @@ The following problems are already implemented in the code and can be solved by 
  7) E. Coli [10].
  
  ## Installation
- _Prerequisites_: CMake and a C++ compiler.  
+ _Prerequisites_: CMake, git and a C++ compiler.  
  
  The code can be compiled with the following commands:
  ```
@@ -32,7 +32,7 @@ The following problems are already implemented in the code and can be solved by 
  ./configure.sh
  ./build.sh
  ```
- Upon configuration, the script will automatically download the required external libraries: `Eigen` and `GetPot`.
+ Upon configuration, the script will use git to automatically download the required external libraries: `Eigen` and `GetPot`.
  
  The compiled executable is found in the ``install/`` directory.
  
