@@ -28,15 +28,17 @@ The following problems are already implemented in the code and can be solved by 
  
  The code can be compiled with the following commands:
  ```
- git clone https://github.com/grosilho/sk-tau-rock_methods.git
+ git clone https://github.com/grosilho/sk-tau-rock_methods.git 
  cd sk-tau-rock_methods
  chmod u+x configure.sh build.sh clear.sh
  ./configure.sh
  ./build.sh
  ```
- Upon configuration, the script will use git to automatically download the required external libraries: `Eigen` and `GetPot`.
+ The compiled executable is found in the `install/` directory.
  
- The compiled executable is found in the ``install/`` directory.
+ _Remark_: the `git clone` step is crucial for automatic download of the required external libraries `Eigen` and `GetPot` during the `./configure.sh` step.
+ 
+ _Alternative_: The code can be downloaded and compiled without the need of git. In that case, however, the configuration script will not automatically download `Eigen` and `GetPot`. Hence, the two libraries must be downloaded separately and placed in the `external/eigen` and `external/getpot` folders. Or change the CMakeLists.txt file if you already have them somewhere.
  
  ## Running the code
  
