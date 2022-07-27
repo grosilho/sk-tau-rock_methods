@@ -18,3 +18,7 @@ add_library(tau-ROCK tau-ROCK.cpp)
 add_library(TauLeap TauLeap.cpp)
 add_library(TauLeapMethod TauLeapMethod.cpp)
 add_library(TrapezoidalTauLeap TrapezoidalTauLeap.cpp)
+
+# I don't know why but gcc doesn't find these dependencies automatically'
+target_link_libraries(Parameters PUBLIC ChemicalSystem ImplicitTauLeap)
+target_link_libraries(R-tau-ROCK PUBLIC ChebyshevMethods)
