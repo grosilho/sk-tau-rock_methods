@@ -26,7 +26,7 @@ The following problems are already implemented in the code and can be solved by 
  ## Installation
  _Prerequisites_: CMake, git and a C++ compiler.  
  
- The code can be compiled with the following commands:
+ The code can be downloaded and compiled with the following commands:
  ```
  git clone https://github.com/grosilho/sk-tau-rock_methods.git 
  cd sk-tau-rock_methods
@@ -34,7 +34,7 @@ The following problems are already implemented in the code and can be solved by 
  ./configure.sh
  ./build.sh
  ```
- The compiled executable is found in the `install/` directory.
+ The executable is found in the `install/` directory.
  
  _Remark_: the `git clone` step is crucial for automatic download of the required external libraries `Eigen` and `GetPot` during the `./configure.sh` step.
  
