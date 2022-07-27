@@ -1,22 +1,35 @@
 cmake_minimum_required(VERSION 3.10)
 
-add_compile_options(-Ofast) 
-if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-  # using Clang
-elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-  add_compile_options(-fopenmp) 
-elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Intel")
-  # using Intel C++
-elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-  # using Visual Studio C++
-endif()
-
 set(CMAKE_CXX_STANDARD 14)
 file(MAKE_DIRECTORY build)
 file(MAKE_DIRECTORY install)
 
 #project name
 project(TauLeapMethods)
+
+
+set(CMAKE_BUILD_TYPE "Release")
+#add_compile_options(-Ofast) 
+if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+  # using Clang
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+  set( CMAKE_CXX_FLAGS "-Ofast -fopenmp" )
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Intel")
+  # using Intel C++
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+  # using Visual Studio C++
+endif()
+
+macro(print_all_variables)
+    message(STATUS "print_all_variables------------------------------------------{")
+    get_cmake_property(_variableNames VARIABLES)
+    foreach (_variableName ${_variableNames})
+        message(STATUS "${_variableName}=${${_variableName}}")
+    endforeach()
+    message(STATUS "print_all_variables------------------------------------------}")
+endmacro()
+#print_all_variables()
+
 
 #executables
 add_executable(${PROJECT_NAME} src/main.cpp)
@@ -54,7 +67,6 @@ target_link_libraries(${PROJECT_NAME}
     TauLeapMethod TrapezoidalTauLeap
 )
 
-
 install(TARGETS ${PROJECT_NAME} DESTINATION .)
 
 # folders to store results
@@ -68,3 +80,5 @@ install(DIRECTORY DESTINATION SchloglReaction)
 
 configure_file(${CMAKE_SOURCE_DIR}/src/help.txt ${CMAKE_SOURCE_DIR}/install COPYONLY)
 configure_file(${CMAKE_SOURCE_DIR}/src/matlab/Plot_path.m ${CMAKE_SOURCE_DIR}/install COPYONLY)
+
+
