@@ -14,7 +14,7 @@ CTestTestfile.cmake
 _deps
 
 # Ignore Mac system files
-.DS_store
+.DS_Store
 
 # Ignore node_modules folder
 #external
